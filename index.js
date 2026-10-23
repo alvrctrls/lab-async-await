@@ -1,27 +1,28 @@
 
 
 // Write your code here!
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(posts => {
-        displayPosts(posts);
-    });
+async function fetchPosts() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const posts = await response.json();
+}
+
+fetchPosts();
 
 function displayPosts(posts){
     posts.forEach(element => {
-        const list = document.createElement("li")
-        const heading = document.createElement("h1")
+        const list = document.createElement("li");
+        const heading = document.createElement("h1");
         
-        heading.textContent = element.title
+        heading.textContent = element.title;
         
-        const body = document.createElement("p")
-        body.textContet = element.body
+        const body = document.createElement("p");
+        body.textContent = element.body;
 
-        list.append(body, heading)
+        list.append(heading, body);
 
-        const unorderedList = document.querySelector("#post-list")
+        const unorderedList = document.querySelector("#post-list");
         
-        unorderedList.appendChild(list)
+        unorderedList.appendChild(list);
     });
 }
 
